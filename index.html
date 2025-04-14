@@ -1,100 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="portfolioApp" ng-controller="PortfolioController">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doulsab Dodamani - Full Stack Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-	<!-- FontAwesome Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Doulsab Dodamani | Java Full Stack Developer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="script.js" defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body class="bg-gray-50 font-sans text-gray-900">
+<body ng-class="{ 'dark-mode': isDarkMode }">
+  <div class="container py-4">
 
-    <!-- Header -->
-    <header class="bg-blue-900 text-white py-10 shadow-lg">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl font-extrabold mb-2">Doulsab Dodamani</h1>
-            <p class="text-xl font-semibold">Full Stack Developer | Java, Spring Boot,Micro Service, AngularJS</p>
-        </div>
+    <!-- Toggle Button -->
+    <div class="d-flex justify-content-end mb-3">
+      <button class="toggle-btn btn btn-outline-secondary" ng-click="toggleDarkMode()">
+        🌙 Toggle Dark Mode
+      </button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="text-center mb-5">
+      <h1 class="fw-bold">{{ name }}</h1>
+      <p class="lead">{{ title }}</p>
     </header>
 
     <!-- About Me Section -->
-    <section class="container mx-auto py-16 px-6 text-center">
-        <h2 class="text-3xl font-semibold mb-6">About Me</h2>
-        <p class="text-lg max-w-3xl mx-auto text-gray-700">
-            I'm a passionate Full Stack Developer with over 3.5 years of experience specializing in <span class="font-bold text-blue-600">Java</span>, <span class="font-bold text-blue-600">Spring Boot</span>, <span class="font-bold text-blue-600">Micro Service </span> and <span class="font-bold text-blue-600">AngularJS</span>. I have experience developing scalable and efficient solutions in the enterprise software space. I enjoy working on backend architecture, building APIs, and front-end design.
-        </p>
+    <section class="mb-5">
+      <h2 class="mb-3 text-primary">About Me</h2>
+      <p class="fs-5">{{ about }}</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="mb-5">
+      <h2 class="mb-4 text-primary text-center">Technical Skills</h2>
+      <div class="row g-4">
+        <div class="col-6 col-md-4 col-lg-3" ng-repeat="skill in skills">
+          <a ng-href="{{ skill.link }}" target="_blank" class="text-decoration-none">
+            <div class="skill-item d-flex align-items-center gap-3 p-3 rounded shadow-sm h-100">
+              <i class="{{ skill.icon }} fa-lg text-primary"></i>
+              <span class="fw-semibold text-dark">{{ skill.name }}</span>
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="bg-gray-100 py-16 px-6">
-        <h2 class="text-3xl font-semibold text-center mb-10">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out">
-                <img src="https://via.placeholder.com/400x250" alt="Project Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-blue-900">Bottie - Quotation Application</h3>
-                    <p class="text-gray-600 mt-4">A custom quotation system developed using Java, Spring Boot, and AngularJS. This system automates the process of generating and managing quotes for various services and products.</p>
-                    <p class="text-sm text-gray-500 mt-4">Tech Stack: Java, Spring Boot, PostgreSQL, Thymeleaf, AngularJS</p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out">
-                <img src="https://via.placeholder.com/400x250" alt="Project Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-blue-900">Bottie_Quote - Quotation Application for Unimicron</h3>
-                    <p class="text-gray-600 mt-4">A custom application built for Unimicron to automate and manage quotes for semiconductor components and related services. Integrated with MySQL for data management.</p>
-                    <p class="text-sm text-gray-500 mt-4">Tech Stack: Java, Spring Boot, MySQL, AngularJS</p>
-                </div>
-            </div>
+    <section class="container mb-5">
+      <h2 class="mb-4 text-center text-primary">Projects</h2>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col" ng-repeat="project in projects">
+          <div class="p-4 rounded shadow-sm project-card h-100">
+            <h4 class="fw-bold">{{ project.name }}</h4>
+            <p>{{ project.description }}</p>
+          </div>
         </div>
+      </div>
     </section>
-	
-	
-	
 
-    <!-- Blog Section (Optional) -->
-   <!--  <section class="container mx-auto py-16 px-6 text-center">
-        <h2 class="text-3xl font-semibold mb-6">Blog</h2>
-        <p class="text-lg max-w-2xl mx-auto text-gray-700 mb-6">I regularly write about Java, Spring Boot, Angular, and best practices for building modern web applications. Check out my articles for helpful tips and insights!</p>
-        <a href="#" class="inline-block bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">Read My Blog</a>
+
+    <!-- Contact Section -->
+    <section class="mb-5">
+      <h2 class="mb-4 text-primary">Contact</h2>
+      <div class="d-flex gap-4 justify-content-center">
+        <a href="mailto:{{ contact.email }}" class="contact-icon fs-3 text-dark" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a ng-href="{{ contact.linkedin }}" target="_blank" class="contact-icon fs-3 text-primary" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a ng-href="{{ contact.github }}" target="_blank" class="contact-icon fs-3 text-dark" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
     </section>
-	 -->
-	
-<!-- Contact Section -->
-<section class="bg-blue-900 text-white py-16 px-6 text-center">
-    <h2 class="text-3xl font-semibold mb-6">Contact Me</h2>
-    <p class="text-lg max-w-2xl mx-auto mb-6">Feel free to get in touch with me for any opportunities or collaborations!</p>
-    
-    <!-- Social Links -->
-    <div class="flex justify-center gap-8">
-        <!-- Email -->
-        <a href="mailto:your-email@example.com" class="text-white text-xl hover:text-blue-400 transition-colors">
-            <i class="fas fa-envelope"></i> Email
-        </a>
-   
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/doulsab-dodamani-657a00191" class="text-white text-xl hover:text-blue-400 transition-colors" target="_blank">
-            <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
-
-        <!-- GitHub -->
-        <a href="https://github.com/doulsab" class="text-white text-xl hover:text-blue-400 transition-colors" target="_blank">
-            <i class="fab fa-github"></i> GitHub
-        </a>
-    </div>
-</section>
-
-
 
     <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-6 text-center">
-        <p>&copy; 2025 Doulsab Dodamani | All Rights Reserved</p>
+    <footer class="text-center mt-5 pt-4 border-top">
+      <p class="mb-0">&copy; 2025 {{ name }}. All rights reserved.</p>
     </footer>
 
+  </div>
 </body>
+
 
 </html>
