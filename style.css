@@ -192,6 +192,8 @@ footer p {
 .dark-mode .contact-icon:hover {
   color: #ff8e53;
 }
+
+
 .project-card {
   background-color: #f8f9fa;
   color: #212529;
@@ -239,4 +241,41 @@ footer p {
 }
 [ng-cloak] {
   display: none !important;
+}
+
+.blogs {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.update-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.update-item:hover {
+  transform: scale(1.05);
+}
+
+.update-item h3 {
+  color: #2a3d66;
+  font-size: 1.5rem;
+}
+
+.update-item p {
+  color: #555;
+}
+
+.update-item strong {
+  font-weight: bold;
+}
+
+code {
+  font-family: monospace;
+  font-size: 1rem;
+  background-color: #f4f4f4;
+  padding: 2px 5px;
+  border-radius: 3px;
 }
