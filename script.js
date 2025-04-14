@@ -61,20 +61,23 @@ myApp.directive('prismHighlight', function() {
         description: "Java 8 introduced significant features such as Lambda Expressions, Streams API, and the new Date-Time API (java.time).",
         example: `<pre><code class="language-java">(x, y) -> x + y;</code></pre>
     <pre><code class="language-java">List&lt;Integer&gt; nums = Arrays.asList(1, 2, 3, 4);
-    nums.stream().filter(n -> n > 2).forEach(System.out::println);</code></pre>`
+    nums.stream().filter(n -> n > 2).forEach(System.out::println);</code></pre>
+    <pre><code class="language-java">LocalDate today = LocalDate.now();</code></pre>`
       },
       {
         version: "Java 9",
         releaseDate: "September 21, 2017",
         description: "Java 9 introduced the Java Platform Module System (JPMS), JShell, and enhanced Javadoc.",
         example: `<pre><code class="language-java">jshell> var sum = (int a, int b) -> a + b;</code></pre>
-    <pre><code class="language-java">module my.module { requires java.base; }</code></pre>`
+    <pre><code class="language-java">module my.module { requires java.base; }</code></pre>
+    <pre><code class="language-java">List.of("A", "B", "C");</code></pre>`
       },
       {
         version: "Java 10",
         releaseDate: "March 20, 2018",
         description: "Java 10 brought Local-Variable Type Inference (var), and garbage collection improvements.",
         example: `<pre><code class="language-java">var num = 10;</code></pre>
+    <pre><code class="language-java">var list = List.of("Java", "10");</code></pre>
     <pre><code class="language-java">java -XX:+UseG1GC -jar myApp.jar</code></pre>`
       },
       {
@@ -82,92 +85,109 @@ myApp.directive('prismHighlight', function() {
         releaseDate: "September 25, 2018",
         description: "Java 11 was a Long-Term Support (LTS) release, introducing features like HTTP Client API, and removal of the Java EE and CORBA modules.",
         example: `<pre><code class="language-java">HttpClient client = HttpClient.newHttpClient();</code></pre>
-    <pre><code class="language-java">HttpRequest request = HttpRequest.newBuilder(new URI("https://example.com")).build();</code></pre>`
+    <pre><code class="language-java">HttpRequest request = HttpRequest.newBuilder(new URI("https://example.com")).build();</code></pre>
+    <pre><code class="language-java">"Hello".isBlank();</code></pre>`
       },
       {
         version: "Java 12",
         releaseDate: "March 19, 2019",
         description: "Java 12 included JVM improvements like Shenandoah Garbage Collector and JVM Constants API.",
         example: `<pre><code class="language-java">-XX:+UseShenandoahGC</code></pre>
-    <pre><code class="language-java">ConstantDesc CONSTANT = ConstantDesc.of("value");</code></pre>`
-      },
-      {
+    <pre><code class="language-java">ConstantDesc CONSTANT = ConstantDesc.of("value");</code></pre>
+    <pre><code class="language-java">switch (day) {
+      case MONDAY -> "Start";
+    }</code></pre>`
+      },{
         version: "Java 13",
         releaseDate: "September 17, 2019",
         description: "Java 13 introduced text blocks (Preview), dynamic CDS archives, and the new switch expression (Preview).",
-        example: `<pre><code class="language-java">String s = """Hello, Java 13!""";</code></pre>
-    <pre><code class="language-java">switch (day) {
-      case MONDAY -> System.out.println("Start of the week");
-    }</code></pre>`
+        example: `<pre><code class="language-java">String text = """
+        Hello,
+        Java 13!
+        """;</code></pre>
+      <pre><code class="language-java">switch (day) {
+        case MONDAY -> System.out.println("Start");
+      }</code></pre>
+      <pre><code class="language-java">-XX:ArchiveClassesAtExit=hello.jsa</code></pre>`
       },
       {
         version: "Java 14",
         releaseDate: "March 17, 2020",
         description: "Java 14 brought features like helpful NullPointerExceptions, and the second preview of the switch expression.",
         example: `<pre><code class="language-java">NullPointerException: Cannot invoke "Object.toString()" because "obj" is null</code></pre>
-    <pre><code class="language-java">switch (day) {
-      case MONDAY -> System.out.println("Weekday");
-    }</code></pre>`
+      <pre><code class="language-java">switch (day) {
+        case FRIDAY -> System.out.println("Weekend is near!");
+      }</code></pre>
+      <pre><code class="language-java">record User(String name, int age) {}</code></pre>`
       },
       {
         version: "Java 15",
         releaseDate: "September 15, 2020",
         description: "Java 15 introduced sealed classes (Preview) and Foreign-Memory Access API (Incubator).",
         example: `<pre><code class="language-java">sealed class Shape permits Circle, Square {}</code></pre>
-    <pre><code class="language-java">MemorySegment segment = MemorySegment.allocateNative(1024);</code></pre>`
+      <pre><code class="language-java">MemorySegment segment = MemorySegment.allocateNative(100);</code></pre>
+      <pre><code class="language-java">System.out.println("Java 15 rocks!");</code></pre>`
       },
       {
         version: "Java 16",
         releaseDate: "March 16, 2021",
         description: "Java 16 brought features like Records, Pattern Matching (Preview), and Foreign Function & Memory API (Incubator).",
         example: `<pre><code class="language-java">record Point(int x, int y) {}</code></pre>
-    <pre><code class="language-java">if (obj instanceof String s) {
-      System.out.println(s);
-    }</code></pre>`
+      <pre><code class="language-java">if (obj instanceof String s) {
+        System.out.println(s.toLowerCase());
+      }</code></pre>
+      <pre><code class="language-java">MemorySegment segment = MemorySegment.allocateNative(256);</code></pre>`
       },
       {
         version: "Java 17",
         releaseDate: "September 14, 2021",
         description: "Java 17 is a Long-Term Support (LTS) release, introducing pattern matching for switch, sealed classes, and enhanced pseudo-random number generators.",
         example: `<pre><code class="language-java">switch (obj) {
-      case String s -> System.out.println(s);
-    }</code></pre>
-    <pre><code class="language-java">sealed class Shape permits Circle, Square {}</code></pre>`
+        case String s -> System.out.println(s.length());
+      }</code></pre>
+      <pre><code class="language-java">sealed interface Animal permits Dog, Cat {}</code></pre>
+      <pre><code class="language-java">RandomGenerator gen = RandomGeneratorFactory.of("L64X256MixRandom").create();</code></pre>`
       },
       {
         version: "Java 18",
         releaseDate: "March 22, 2022",
         description: "Java 18 introduced features like Simple Web Server, JEP 400: UTF-8 by Default, and JEP 395: On-Stack Replacement for JVM.",
-        example: `<pre><code class="language-java">java -m httpserver</code></pre>
-    <pre><code class="language-java">java -Dfile.encoding=UTF-8 -jar app.jar</code></pre>`
+        example: `<pre><code class="language-java">java -m jdk.httpserver</code></pre>
+      <pre><code class="language-java">System.out.println(System.getProperty("file.encoding"));</code></pre>
+      <pre><code class="language-java">-XX:+UnlockDiagnosticVMOptions -XX:+PrintInlining</code></pre>`
       },
       {
         version: "Java 19",
         releaseDate: "September 20, 2022",
         description: "Java 19 includes features like Record Patterns (Preview), Virtual Threads (Preview), and a new Foreign Function & Memory API.",
-        example: `<pre><code class="language-java">Thread.startVirtualThread(() -> {...});</code></pre>
-    <pre><code class="language-java">switch (obj) {
-      case Record Point(int x, int y) -> System.out.println(x + y);
-    }</code></pre>`
+        example: `<pre><code class="language-java">Thread.startVirtualThread(() -> {
+        System.out.println("Running virtual thread");
+      });</code></pre>
+      <pre><code class="language-java">if (obj instanceof Point(int x, int y)) {
+        System.out.println(x + y);
+      }</code></pre>
+      <pre><code class="language-java">MemorySegment segment = MemorySegment.allocateNative(128);</code></pre>`
       },
       {
         version: "Java 20",
         releaseDate: "March 21, 2023",
         description: "Java 20 introduced features like Project Loom (Virtual Threads), enhanced pattern matching, and improvements in the Foreign Function & Memory API.",
-        example: `<pre><code class="language-java">switch (obj) {
-      case Integer i -> System.out.println(i);
-    }</code></pre>
-    <pre><code class="language-java">Thread.startVirtualThread(() -> {});</code></pre>`
+        example: `<pre><code class="language-java">Thread.startVirtualThread(() -> System.out.println("Hello from Loom"));</code></pre>
+      <pre><code class="language-java">switch (obj) {
+        case Integer i -> System.out.println(i);
+      }</code></pre>
+      <pre><code class="language-java">MemorySegment segment = MemorySegment.allocateNative(512);</code></pre>`
       },
       {
         version: "Java 21",
         releaseDate: "September 2023",
-        description: "Java 21 is the latest LTS version with features like Foreign Function and Memory API (incubator), JEP 441 (Pattern Matching), and many more.",
-        example: `<pre><code class="language-java">ForeignMemoryAccess API</code></pre>
-    <pre><code class="language-java">switch (shape) {
-      case Circle c -> System.out.println("Circle");
-    }</code></pre>`
-      }
+        description: "Java 21 is the latest LTS version with features like Foreign Function and Memory API, JEP 441 (Pattern Matching), String Templates, and more.",
+        example: `<pre><code class="language-java">switch (shape) {
+        case Circle c -> System.out.println("Circle");
+      }</code></pre>
+      <pre><code class="language-java">MemorySegment segment = MemorySegment.allocateNative(64);</code></pre>
+      <pre><code class="language-java">String result = STR."Hello, \{name}!";</code></pre>`
+      }   
     ];
     
     
